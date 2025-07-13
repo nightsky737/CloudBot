@@ -19,7 +19,7 @@ client = discord.Client(intents=intents)
 @client.event
 async def on_ready():
     #On ready runs when you connect to it
-    print(f'{client.user} is ready to go!')
+    print(f'{client.user} is ready to go!') 
 
     #Apparently discord servers are called guilds. Anyways  discord.find is p useful
     #Basically runs until that lambda fxn is true searching the iterable in second args position
@@ -36,6 +36,13 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    if message.attachments:
+        for attachment in message.attachments:
+            if attachment.content_type and attachment.content_type.startswith("image/"):
+                print(attachment.url)
+                    # Or download the image:
+                    # await attachment.save(f"downloaded_images/{attachment.filename}")
+                    # print(f"Downloaded image: {attachment.filename}")
     #Sends it in the same channel message was sent from
     await message.channel.send("great message! This def wont get annoying fast!")
 
