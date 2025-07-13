@@ -1,2 +1,3 @@
 *.env
 inatbot/ 
+models/data/
