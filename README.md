@@ -10,3 +10,6 @@ i will do this later
 
 # How to use this bot:
 Call !cloud to identify clouds
+
+#Datasets I used to train 
+https://www.kaggle.com/datasets/mmichelli/cirrus-cumulus-stratus-nimbus-ccsn-database
