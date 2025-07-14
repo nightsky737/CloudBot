@@ -11,5 +11,7 @@ i will do this later
 # How to use this bot:
 Call !cloud to identify clouds
 
-#Datasets I used to train 
+# Datasets I used to train 
 https://www.kaggle.com/datasets/mmichelli/cirrus-cumulus-stratus-nimbus-ccsn-database
+
+I do not have these in the github because otherwise that would be too much storage. However, I have stored them in a folder in this directory called "data" under "clouds".
