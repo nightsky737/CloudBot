@@ -72,7 +72,6 @@ def predict(model, img, display = False, should_log = False):
         img.save(log_folder/ f"og{log_num}.jpg")
         transformed_img.save(log_folder/ f"transformed{log_num}.jpg")
 
-
     with torch.no_grad():
         prediction = model(tensored_img)
 
