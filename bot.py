@@ -3,6 +3,9 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 import os
+from PIL import Image
+import requests
+from io import BytesIO
 
 load_model()
 load_dotenv()
@@ -27,6 +30,14 @@ if __name__ == "__main__":
     async def ping(ctx): #when user types prefix + fxn name (so in this case !ping). Also gives it the context which holds metadata
         await ctx.send("pong!")
 
+    @bot.command()
+    async def cloud(ctx):
+        img_url = ctx.message.attachments[0].proxy_url 
+        response = requests.get(img_url)
+        img = Image.open(BytesIO(response.content)) #get image 
+        #i want to avoid downloading to compute
+        pred =predict(model, img) 
+        await ctx.send(pred)
 
     bot.run(bot_key)
 
