@@ -16,7 +16,6 @@ class IdCog(commands.Cog):
         img_url = ctx.message.attachments[0].proxy_url 
         response = requests.get(img_url)
         img = Image.open(BytesIO(response.content)) #get image 
-        #i want to avoid downloading to compute
         pred = predict(model, img, should_log=False)
         await ctx.send(pred)
     
