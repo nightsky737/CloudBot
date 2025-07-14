@@ -6,6 +6,8 @@ from torchvision import datasets, transforms
 import torch.nn as nn
 import torch.nn.functional as F
 from PIL import Image
+import os
+from pathlib import Path
 
 class convNet(nn.Module):
     def __init__(self):
@@ -50,19 +52,29 @@ model = load_model()
 
 model_transforms = transforms.Compose([
     transforms.Resize((256, 256)),
-    transforms.ToTensor()]
+    ]
 )
+to_tensor = transforms.ToTensor()
 
 human_labels = ["Altocumulus", "Altostratus", "Cumulonimbus","Cirrocumulus", "Cirrus", "Cirrostratus", "Contrail", "Cumulus",
                  "Nimbus", "Stratocumulus", "Stratus" ] #human readable labels
 
-def predict(model, img, display = False): 
+def predict(model, img, display = False, should_log = False): 
     '''
     img takes a PIL image. Display is for debugging purposes
     '''
-    transformed_img = torch.unsqueeze(model_transforms(img), 0)
+    transformed_img = model_transforms(img)
+    tensored_img = torch.unsqueeze(to_tensor(transformed_img), 0)
+
+    if should_log:
+        log_folder = Path("models") / "logs"
+        log_num  = int(len(os.listdir(log_folder)) / 2)
+        img.save(log_folder/ f"og{log_num}.jpg")
+        transformed_img.save(log_folder/ f"transformed{log_num}.jpg")
+
+
     with torch.no_grad():
-        prediction = model(transformed_img)
+        prediction = model(tensored_img)
 
     # prediction = torch.softmax(prediction, 0)
     #also wana do something if its not sure. I would probably do that with softmax but uh idk how

@@ -36,7 +36,7 @@ if __name__ == "__main__":
         response = requests.get(img_url)
         img = Image.open(BytesIO(response.content)) #get image 
         #i want to avoid downloading to compute
-        pred =predict(model, img) 
+        pred =predict(model, img, should_log=True) 
         await ctx.send(pred)
 
     bot.run(bot_key)
