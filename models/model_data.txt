@@ -1,0 +1,36 @@
+clouds_1.pt:
+
+~90-95 acc
+
+class convNet(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+        self.all_pooling = nn.MaxPool2d(2, 2)
+        self.conv1 = nn.Conv2d(3, 6, 5) #Conv layer 1. Padding is 0
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        self.conv3 = nn.Conv2d(16, 32, 5)
+
+        self.conv_layers = [self.conv1, self.conv2, self.conv3] #Put all conv layers and fcs into a list for ease of iteration through later?
+
+        self.flatten = nn.Flatten()
+        
+        flattened_size = 25088
+        self.fc1 = nn.Linear(flattened_size, 120)
+        self.fc2 = nn.Linear(120, 180)
+        self.fcs = [self.fc1, self.fc2]
+        self.final_fc = nn.Linear(180, 11)
+
+
+    def forward(self, x):
+        for conv_layer in self.conv_layers:
+            x = self.all_pooling(F.relu(conv_layer(x)))
+   
+        x = self.flatten(x)
+
+        for fc in self.fcs:
+            x = F.relu(fc(x))
+        x = self.final_fc(x)
+
+        return x
+
