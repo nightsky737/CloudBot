@@ -39,11 +39,16 @@ class convNet(nn.Module):
 
         return x
 
-model_fp = "clouds_1.pt" #Just stick the best/highest acc model in here
-model = torch.load(model_fp, weights_only = False)
+def load_model(model_fp="models/clouds.pth"):
+#Just stick the best/highest acc model in here
+    # return torch.load(model_fp, weights_only=False)
+    model = convNet()
+    model.load_state_dict(torch.load(model_fp))
+    return model
 
+model = load_model()
 
-model_transforms = transform = transforms.Compose([
+model_transforms = transforms.Compose([
     transforms.Resize((256, 256)),
     transforms.ToTensor()]
 )
@@ -51,7 +56,7 @@ model_transforms = transform = transforms.Compose([
 human_labels = ["Altocumulus", "Altostratus", "Cumulonimbus","Cirrocumulus", "Cirrus", "Cirrostratus", "Contrail", "Cumulus",
                  "Nimbus", "Stratocumulus", "Stratus" ] #human readable labels
 
-def predict(img, display = False): 
+def predict(model, img, display = False): 
     '''
     img takes a PIL image. Display is for debugging purposes
     '''
@@ -67,5 +72,4 @@ def predict(img, display = False):
 
     return human_labels[torch.argmax(prediction)]
 
-print(predict(Image.open("data\cloud_data\Ci\Ci-N139.jpg"), display=True))
-
+# print(predict(Image.open("models\data\cloud_data\Ci\Ci-N139.jpg"), display=True))
