@@ -12,7 +12,7 @@ class IdCog(commands.Cog):
         self.bot = bot
     
     @commands.command()
-    async def cloud(ctx):
+    async def cloud(self, ctx):
         img_url = ctx.message.attachments[0].proxy_url 
         response = requests.get(img_url)
         img = Image.open(BytesIO(response.content)) #get image 
@@ -20,4 +20,5 @@ class IdCog(commands.Cog):
         pred = predict(model, img, should_log=False)
         await ctx.send(pred)
     
-    
+async def setup(bot):
+    await bot.add_cog(IdCog(bot))
