@@ -1,2 +1,3 @@
 matplotlib 
 ipykernel
+scikit-learn
