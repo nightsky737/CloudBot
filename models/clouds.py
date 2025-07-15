@@ -2,7 +2,7 @@
 
 import torch
 import torchvision
-from torchvision import datasets, transforms
+from torchvision import datasets, transforms, models
 import torch.nn as nn
 import torch.nn.functional as F
 from PIL import Image
@@ -41,20 +41,35 @@ class convNet(nn.Module):
 
         return x
 
-def load_model(model_fp="models/clouds.pth"):
-#Just stick the best/highest acc model in here
-    # return torch.load(model_fp, weights_only=False)
-    model = convNet()
+# def load_model(model_fp="models/clouds.pth"):
+# #Just stick the best/highest acc model in here
+#     # return torch.load(model_fp, weights_only=False)
+#     model = convNet()
+#     model.load_state_dict(torch.load(model_fp))
+#     return model
+
+def load_model(model_fp="models/resnet_attempt2.pth"):
+    model = models.resnet50(pretrained=False) #gonna start small ish so my computer doesnt blow up
+    model.fc = nn.Linear(model.fc.in_features, 11)
     model.load_state_dict(torch.load(model_fp))
     return model
 
-model = load_model()
+model = load_model("models/resnet_attempt1.pth")
 
+# model_transforms = transforms.Compose([
+#     transforms.Resize((256, 256)),
+#     transforms.ToTensor()
+#     ]
+# )
+
+#Resnet transforms
 model_transforms = transforms.Compose([
-    transforms.Resize((256, 256)),
-    ]
-)
-to_tensor = transforms.ToTensor()
+    transforms.Resize((224, 224)),
+    transforms.ToTensor(),
+    transforms.Normalize([0.485, 0.456,0.406],
+                         [0.229, 0.224, 0.225]), 
+                         ]
+) 
 
 human_labels = ["Altocumulus", "Altostratus", "Cumulonimbus","Cirrocumulus", "Cirrus", "Cirrostratus", "Contrail", "Cumulus",
                  "Nimbus", "Stratocumulus", "Stratus" ] #human readable labels
@@ -63,14 +78,13 @@ def predict(model, img, display = False, should_log = False):
     '''
     img takes a PIL image. Display is for debugging purposes
     '''
-    transformed_img = model_transforms(img)
-    tensored_img = torch.unsqueeze(to_tensor(transformed_img), 0)
+    tensored_img = torch.unsqueeze(model_transforms(img), 0)
 
     if should_log:
         log_folder = Path("models") / "logs"
         log_num  = int(len(os.listdir(log_folder)) / 2)
         img.save(log_folder/ f"og{log_num}.jpg")
-        transformed_img.save(log_folder/ f"transformed{log_num}.jpg")
+        # transformed_img.save(log_folder/ f"transformed{log_num}.jpg") Fix later.
 
     with torch.no_grad():
         prediction = model(tensored_img)

@@ -36,7 +36,8 @@ if __name__ == "__main__":
     bot_key = os.getenv('bot_key')
     my_guild_name = os.getenv('my_server_name')
 
-    cloud_info = json.load("whatis.json")
+    with open("whatis.json", 'r') as f:
+        cloud_info = json.load(f)
     bot = NatBot()
 
 
@@ -55,6 +56,6 @@ if __name__ == "__main__":
         else:
             msg = "Sorry! I don't recognize that cloud type"
         await ctx.send(msg)
-        
+
     bot.run(bot_key)
 
