@@ -3,3 +3,4 @@ inatbot/
 models/data/
 models/logs/
 models/important_logs/
+*.pth

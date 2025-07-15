@@ -15,3 +15,6 @@ Call !cloud to identify clouds
 https://www.kaggle.com/datasets/mmichelli/cirrus-cumulus-stratus-nimbus-ccsn-database
 
 I do not have these in the github because otherwise that would be too much storage. However, I have stored them in a folder in this directory called "data" under "clouds".
+
+# Other notes:
+Data and models that are not the final model might not be on github, as those are big and eat storage.

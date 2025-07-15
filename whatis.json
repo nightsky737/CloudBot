@@ -2,13 +2,13 @@
     "altocumulus" : "Altocumulus are mid-level clouds that can sit closely together to form a layer over the sky. Their individual elements are larger than those of cirrocumulus but smaller than those of stratocumulus clouds.",
     "altostratus": "Altostratus clouds are",
     "cumulonimbus": "Cumulonimbus clouds are thunderstorm clouds that tower high over the earth. They have a characteristic anvil-shaped top, but their lower areas can look like cauliflowers",
-    "cirrocumulus" : "",
+    "cirrocumulus" : "These are high-altitude clouds that consist of small, white patches. They are associated with fair but cold weather.",
     "cirrus" : "Cirrus clouds are thin, feathery clouds that appear high in the atomsphere. They are composed of ice crystals and typically signal fair weather but can be indicitave of an approaching weather disturbance.",
-    "cirrostratus" : "",
-    "contrail" : "",
+    "cirrostratus" : "Cirrostratus clouds are high-altitude, thin sheets of clouds that are composed of ice crystals. They often appear as a milky or white veil. Light refracting through the ice crystals can form a halo around the sun or moon.",
+    "contrail" : "Contrails are condensation trails formed by aircraft exhaust in the upper atmosphere. Like many other high-altitude clouds, they are composed of ice crystals and appear as linear streaks.",
     "cumulus" : "Cumulus clouds are puffy, white or light gray. They have a flat base and distinct, rounded tops that resemble cotton balls. They typically form in fair weather and are made from rising warm air.",
-    "nimbus" : "", 
-    "stratocumulus" : "", 
-    "stratus" : ""
+    "nimbostratus" : "Nimbostratus clouds are dark gray, featureless clodus that sit like a blanket over the earth. They are associated with warm fronts and appear low, frequently bringing precipitation", 
+    "stratocumulus" : "Stratocumulus clouds are low-lying, lumpy clouds that often appear in sheets of patches of clouds. These typically do not produce precipitation, and when they do, only bring light rain or snow.", 
+    "stratus" : "Stratus clouds are low-level, light gray, and featureless clouds. They are associated with calm weather, and can produce light drizzle or mist."
 }
 
