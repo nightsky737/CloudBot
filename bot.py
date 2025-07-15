@@ -2,10 +2,7 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 import os
- 
-load_dotenv()
-bot_key = os.getenv('bot_key')
-my_guild_name = os.getenv('my_server_name')
+import json
 
 class NatBot(commands.Bot):
     def __init__(self):
@@ -34,13 +31,30 @@ class NatBot(commands.Bot):
         await ctx.send(help_msg)
 
 if __name__ == "__main__":
+     
+    load_dotenv()
+    bot_key = os.getenv('bot_key')
+    my_guild_name = os.getenv('my_server_name')
+
+    cloud_info = json.load("whatis.json")
     bot = NatBot()
-    
+
+
  #or less of them i dont know what im doing :sob: 
     @bot.command()
     async def ping(ctx): #when user types prefix + fxn name (so in this case !ping). Also gives it the context which holds metadata
         await ctx.send("pong!")
- 
+    
+    @bot.command()
+    async def whatis(ctx, question):
+        #Just gives a definition of what that word is 
+        question = question.lower()
 
+        if cloud_info.get(question):
+            msg = cloud_info[question]
+        else:
+            msg = "Sorry! I don't recognize that cloud type"
+        await ctx.send(msg)
+        
     bot.run(bot_key)
 
