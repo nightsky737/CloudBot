@@ -48,13 +48,13 @@ class convNet(nn.Module):
 #     model.load_state_dict(torch.load(model_fp))
 #     return model
 
-def load_model(model_fp="models/resnet_attempt2.pth"):
+def load_model(model_fp):
     model = models.resnet50(pretrained=False) #gonna start small ish so my computer doesnt blow up
     model.fc = nn.Linear(model.fc.in_features, 11)
     model.load_state_dict(torch.load(model_fp))
     return model
 
-model = load_model("models/resnet_attempt1.pth")
+model = load_model("models/resnet_attempt2.pth") #resnet 1 said everything was cirrostratus. im losing my damn mind
 
 # model_transforms = transforms.Compose([
 #     transforms.Resize((256, 256)),

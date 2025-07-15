@@ -5,7 +5,6 @@ from PIL import Image
 from models.clouds import *
 from io import BytesIO
 
-load_model()
 
 class IdCog(commands.Cog):
     def __init__(self, bot):
