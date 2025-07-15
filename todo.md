@@ -3,4 +3,3 @@
 3. Make a greeting when bot enters server
 4. Learn more about discord
 5. I wanna do some image segmentation stuf too so
-do data augmentation on the clouds cause god damn that is not a cumulonimubs
