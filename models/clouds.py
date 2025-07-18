@@ -8,6 +8,8 @@ import torch.nn.functional as F
 from PIL import Image
 import os
 from pathlib import Path
+from torchvision.transforms.functional import to_pil_image
+
 
 class convNet(nn.Module):
     def __init__(self):
@@ -46,15 +48,15 @@ class convNet(nn.Module):
 #     # return torch.load(model_fp, weights_only=False)
 #     model = convNet()
 #     model.load_state_dict(torch.load(model_fp))
-#     return model
+#     return model 
 
 def load_model(model_fp):
-    model = models.resnet50(pretrained=False) #gonna start small ish so my computer doesnt blow up
+    model = models.resnet152(pretrained=False) #gonna start small ish so my computer doesnt blow up
     model.fc = nn.Linear(model.fc.in_features, 11)
-    model.load_state_dict(torch.load(model_fp))
+    model.load_state_dict(torch.load(model_fp, map_location=torch.device('cpu')))
     return model
 
-model = load_model("models/resnet_attempt2.pth") #resnet 1 said everything was cirrostratus. im losing my damn mind
+model = load_model("models/resnet_attempt_final1.pth") #resnet 1 said everything was cirrostratus. im losing my damn mind
 
 # model_transforms = transforms.Compose([
 #     transforms.Resize((256, 256)),
@@ -66,8 +68,8 @@ model = load_model("models/resnet_attempt2.pth") #resnet 1 said everything was c
 model_transforms = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
-    transforms.Normalize([0.485, 0.456,0.406],
-                         [0.229, 0.224, 0.225]), 
+    # transforms.Normalize([0.485, 0.456,0.406],
+    #                      [0.229, 0.224, 0.225]), 
                          ]
 ) 
 
@@ -84,7 +86,8 @@ def predict(model, img, display = False, should_log = False):
         log_folder = Path("models") / "logs"
         log_num  = int(len(os.listdir(log_folder)) / 2)
         img.save(log_folder/ f"og{log_num}.jpg")
-        # transformed_img.save(log_folder/ f"transformed{log_num}.jpg") Fix later.
+        transformed_img = to_pil_image(tensored_img[0])
+        transformed_img.save(log_folder/ f"transformed{log_num}.jpg") 
 
     with torch.no_grad():
         prediction = model(tensored_img)

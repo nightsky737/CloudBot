@@ -15,7 +15,7 @@ class IdCog(commands.Cog):
         img_url = ctx.message.attachments[0].proxy_url 
         response = requests.get(img_url)
         img = Image.open(BytesIO(response.content)) #get image 
-        pred = predict(model, img, should_log=False)
+        pred = predict(model, img, should_log=True)
         await ctx.send(pred)
     
 async def setup(bot):
