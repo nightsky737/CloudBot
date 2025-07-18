@@ -10,7 +10,6 @@ class NatBot(commands.Bot):
         intents.message_content = True #let em read the messages 
         super().__init__(command_prefix = "!", intents=intents) #Basically now creates a bot kind of like in the learning but now we subclassing
 
-    #No more wrappers!
     async def on_ready(self):
         print("NatBot is ready to go!")
 
