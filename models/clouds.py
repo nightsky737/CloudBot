@@ -9,6 +9,7 @@ from PIL import Image
 import os
 from pathlib import Path
 from torchvision.transforms.functional import to_pil_image
+from collections import OrderedDict
 
 
 class convNet(nn.Module):
@@ -49,34 +50,26 @@ class convNet(nn.Module):
 #     model = convNet()
 #     model.load_state_dict(torch.load(model_fp))
 #     return model 
-
+human_labels = ["Altocumulus", "Altostratus", "Cumulonimbus","Cirrocumulus", "Cirrus", "Contrail", "Cumulus",
+                 "Nimbus", "Stratocumulus", "Stratus" ] #human readable labels
 def load_model(model_fp):
     model = models.resnet152(pretrained=False) #gonna start small ish so my computer doesnt blow up
-    model.fc = nn.Linear(model.fc.in_features, 11)
+    model.fc = nn.Linear(model.fc.in_features, len(human_labels))
     model.load_state_dict(torch.load(model_fp, map_location=torch.device('cpu')))
     return model
 
-model = load_model("models/resnet_attempt_final1.pth") #resnet 1 said everything was cirrostratus. im losing my damn mind
-
-# model_transforms = transforms.Compose([
-#     transforms.Resize((256, 256)),
-#     transforms.ToTensor()
-#     ]
-# )
+model = load_model("models/resnet_pretty_decent.pth") #resnet 1 said everything was cirrostratus. im losing my damn mind
 
 #Resnet transforms
 model_transforms = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
-    # transforms.Normalize([0.485, 0.456,0.406],
-    #                      [0.229, 0.224, 0.225]), 
+    transforms.Normalize([0.485, 0.456,0.406],
+                         [0.229, 0.224, 0.225]), 
                          ]
 ) 
 
-human_labels = ["Altocumulus", "Altostratus", "Cumulonimbus","Cirrocumulus", "Cirrus", "Cirrostratus", "Contrail", "Cumulus",
-                 "Nimbus", "Stratocumulus", "Stratus" ] #human readable labels
-
-def predict(model, img, display = False, should_log = False): 
+def predict(model, img, top_p=.5, display = False, should_log = False): 
     '''
     img takes a PIL image. Display is for debugging purposes
     '''
@@ -92,12 +85,22 @@ def predict(model, img, display = False, should_log = False):
     with torch.no_grad():
         prediction = model(tensored_img)
 
-    # prediction = torch.softmax(prediction, 0)
-    #also wana do something if its not sure. I would probably do that with softmax but uh idk how
-
     if display: 
         img.show()
 
-    return human_labels[torch.argmax(prediction)]
+    softmaxxed = torch.softmax(prediction, dim=1)
+    #uh how do I want to do this? top p = 50%?
+    #sure i guess we can also pass top p in as arg and default to 50%?
+    labels = [i for i in range(len(human_labels))]
 
-# print(predict(Image.open("models\data\cloud_data\Ci\Ci-N139.jpg"), display=True))
+    labels.sort(key= lambda x: softmaxxed[0][x])
+    total_probs = 0
+    return_dict = OrderedDict()
+    for label in labels:
+        total_probs += softmaxxed[0][label]
+        if total_probs >= top_p:
+            break
+        return_dict[human_labels[label]] = softmaxxed[0][label]
+    return return_dict
+
+print(predict(model, Image.open("models\data\cloud_data\Ci\Ci-N139.jpg")))
