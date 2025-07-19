@@ -1,7 +1,7 @@
 {
     "cloud_info": {
     "altocumulus" : "Altocumulus are mid-level clouds that can sit closely together to form a layer over the sky. Their individual elements are larger than those of cirrocumulus but smaller than those of stratocumulus clouds.",
-    "altostratus": "Altostratus clouds are",
+    "altostratus": "Altostratus clouds are mid-level clouds that typically cover the entire sky. They can produce precipitation, but said precipitation is typically light.",
     "cumulonimbus": "Cumulonimbus clouds are thunderstorm clouds that tower high over the earth. They have a characteristic anvil-shaped top, but their lower areas can look like cauliflowers",
     "cirrocumulus" : "These are high-altitude clouds that consist of small, white patches. They are associated with fair but cold weather.",
     "cirrus" : "Cirrus clouds are thin, feathery clouds that appear high in the atomsphere. They are composed of ice crystals and typically signal fair weather but can be indicitave of an approaching weather disturbance.",
@@ -12,5 +12,19 @@
     "stratocumulus" : "Stratocumulus clouds are low-lying, lumpy clouds that often appear in sheets of patches of clouds. These typically do not produce precipitation, and when they do, only bring light rain or snow.", 
     "stratus" : "Stratus clouds are low-level, light gray, and featureless clouds. They are associated with calm weather, and can produce light drizzle or mist."
 },
-"cloud_names" : ["ac", "as", "cb", "cc", "ci", "cs", "ct", "cu", "ns", "sc", "st", "altocumulus", "altostratus", "cumulonimbus", "cirrocumulus", "cirrus", "cirrostratus", "contrail", "cumulus", "nimbostratus", "stratocumulus", "stratus"]
+"cloud_names" : ["ac", "as", "cb", "cc", "ci", "cs", "ct", "cu", "ns", "sc", "st", "altocumulus", "altostratus", "cumulonimbus", "cirrocumulus", "cirrus", "cirrostratus", "contrail", "cumulus", "nimbostratus", "stratocumulus", "stratus"],
+"decent_imgs" : {
+    "Ac" : [221], 
+    "As" : [188],
+    "Cb" : [242],
+    "Cc" : [268],
+    "Ci" : [139],
+    "Cs" : [287],
+    "Ct" : [200],
+    "Cu" : [182],
+    "Ns" : [274],
+    "Sc" : [340],
+    "St" : [202]
 }
+}
+

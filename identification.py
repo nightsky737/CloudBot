@@ -1,4 +1,5 @@
 import discord
+import random
 from discord.ext import commands
 import requests
 from PIL import Image
@@ -11,12 +12,13 @@ with open("whatis.json") as f:
 
 
 abbreviations_dict = {}
+full_to_abbr = {}
 abbreviations_str = ""
 for i in range(11):
     abbreviations_dict[info['cloud_names'][i]] = info['cloud_names'][i + 11]
     abbreviations_str += f"{info['cloud_names'][i + 11]}: {info['cloud_names'][i]}, "
+    full_to_abbr[info['cloud_names'][i + 11]] = info['cloud_names'][i][0].upper() + info['cloud_names'][i][1]
 abbreviations_str = f"[{abbreviations_str[:-2]}]"
-
 
 class IdCog(commands.Cog):
     def __init__(self, bot):
@@ -31,7 +33,7 @@ class IdCog(commands.Cog):
         await ctx.send(pred)
     
     @commands.command()
-    async def info(self, ctx, cloud_name : str):
+    async def info(self, ctx, cloud_name : str, num_to_send=3):
         cloud_name = cloud_name.lower()
 
         if cloud_name not in info["cloud_names"]:
@@ -40,7 +42,12 @@ class IdCog(commands.Cog):
         if cloud_name in abbreviations_dict:
             cloud_name = abbreviations_dict[cloud_name]
 
-        await ctx.send(info["cloud_info"][cloud_name])
+        cloud_files = []
+        selected_file_nums = random.sample([i for i in range(info["decent_imgs"][full_to_abbr[cloud_name]][0])], num_to_send)
+        for num in selected_file_nums:
+            fp = f"models/data/cloud_data/{full_to_abbr[cloud_name]}/{full_to_abbr[cloud_name]}-N{str(num).rjust(3, '0')}.jpg"
+            cloud_files.append(discord.File(fp)) 
+        await ctx.send(info["cloud_info"][cloud_name] + "\n Here are some images", files=cloud_files)
 
     @commands.command()
     async def cloudnames(self, ctx):

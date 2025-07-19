@@ -46,8 +46,9 @@ if __name__ == "__main__":
         await ctx.send("pong!")
     
     @bot.command()
-    async def whatis(ctx, question):
+    async def whatis(ctx, question, numpictures=1):
         #Just gives a definition of what that word is 
+        #Optional second param: Numpictures, defaults to 1
         question = question.lower()
 
         if cloud_info.get(question):
