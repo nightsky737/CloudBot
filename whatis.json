@@ -1,4 +1,5 @@
 {
+    "cloud_info": {
     "altocumulus" : "Altocumulus are mid-level clouds that can sit closely together to form a layer over the sky. Their individual elements are larger than those of cirrocumulus but smaller than those of stratocumulus clouds.",
     "altostratus": "Altostratus clouds are",
     "cumulonimbus": "Cumulonimbus clouds are thunderstorm clouds that tower high over the earth. They have a characteristic anvil-shaped top, but their lower areas can look like cauliflowers",
@@ -10,5 +11,6 @@
     "nimbostratus" : "Nimbostratus clouds are dark gray, featureless clodus that sit like a blanket over the earth. They are associated with warm fronts and appear low, frequently bringing precipitation", 
     "stratocumulus" : "Stratocumulus clouds are low-lying, lumpy clouds that often appear in sheets of patches of clouds. These typically do not produce precipitation, and when they do, only bring light rain or snow.", 
     "stratus" : "Stratus clouds are low-level, light gray, and featureless clouds. They are associated with calm weather, and can produce light drizzle or mist."
+},
+"cloud_names" : ["ac", "as", "cb", "cc", "ci", "cs", "ct", "cu", "ns", "sc", "st", "altocumulus", "altostratus", "cumulonimbus", "cirrocumulus", "cirrus", "cirrostratus", "contrail", "cumulus", "nimbostratus", "stratocumulus", "stratus"]
 }
-

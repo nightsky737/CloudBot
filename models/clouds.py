@@ -103,4 +103,4 @@ def predict(model, img, top_p=.5, display = False, should_log = False):
         return_dict[human_labels[label]] = softmaxxed[0][label]
     return return_dict
 
-print(predict(model, Image.open("models\data\cloud_data\Ci\Ci-N139.jpg")))
+# print(predict(model, Image.open("models\data\cloud_data\Ci\Ci-N139.jpg")))
