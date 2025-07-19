@@ -69,10 +69,13 @@ model_transforms = transforms.Compose([
                          ]
 ) 
 
-def predict(model, img, top_p=.5, display = False, should_log = False): 
+def predict(model, img, top_p=.6, display = False, should_log = False): 
     '''
     img takes a PIL image. Display is for debugging purposes
     '''
+
+
+    #Now the code
     tensored_img = torch.unsqueeze(model_transforms(img), 0)
 
     if should_log:
@@ -93,7 +96,8 @@ def predict(model, img, top_p=.5, display = False, should_log = False):
     #sure i guess we can also pass top p in as arg and default to 50%?
     labels = [i for i in range(len(human_labels))]
 
-    labels.sort(key= lambda x: softmaxxed[0][x])
+    labels.sort(key= lambda x: softmaxxed[0][x], reverse=True)
+
     total_probs = 0
     return_dict = OrderedDict()
     for label in labels:
