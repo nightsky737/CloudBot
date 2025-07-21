@@ -1,6 +1,4 @@
 *.env
 inatbot/ 
-models/data/
-models/logs/
-models/important_logs/
 *.pth
+testing_and_trash/

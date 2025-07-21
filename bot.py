@@ -16,19 +16,6 @@ class NatBot(commands.Bot):
     async def setup_hook(self):
         await self.load_extension("identification") 
 
-    async def help(self, ctx):
-        help_msg = '''
-        I'm Nat, short for NatBot 🌱  
-        I can identify:
-        - ☁️ Cloud types using `!cloud` + image attachment  
-        - 🐾 Animals (i didnt get around to this yet) using `!animal`  
-        - 🌿 Plants (hopefully) using `!plant`  
-
-        Ex:
-        !cloud  and
-        '''
-        await ctx.send(help_msg)
-
 if __name__ == "__main__":
      
     load_dotenv()
@@ -44,18 +31,20 @@ if __name__ == "__main__":
     @bot.command()
     async def ping(ctx): #when user types prefix + fxn name (so in this case !ping). Also gives it the context which holds metadata
         await ctx.send("pong!")
-    
-    @bot.command()
-    async def whatis(ctx, question, numpictures=1):
-        #Just gives a definition of what that word is 
-        #Optional second param: Numpictures, defaults to 1
-        question = question.lower()
+        
+    @bot.command(name="help")
+    async def help_command(self, ctx):
+        help_msg = '''
+        I'm Nebula, your local cloud-identifying bot!
 
-        if cloud_info.get(question):
-            msg = cloud_info[question]
-        else:
-            msg = "Sorry! I don't recognize that cloud type"
-        await ctx.send(msg)
+        Right now, I can identify:
+        - ☁️ Cloud types using `!cloudId` + image attachment  
+
+        I can also
+        - Give info on the cloud types with !info [cloudtype] command
+        - Tell you all of the cloudtypes with the !cloudnames command
+        '''
+        await ctx.send(help_msg)
 
     bot.run(bot_key)
 
