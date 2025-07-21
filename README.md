@@ -6,7 +6,7 @@ Invite the bot to the server
 Run python main.py
 
 # To add bot to server:
-1. Visit this (link)[] in your browser
+1. Visit this (link)[https://discord.com/oauth2/authorize?client_id=1394383883176247386&permissions=274878024704&integration_type=0&scope=bot] in your browser
 2. Select server you want to add it to
 3. Enjoy identifying clouds!
 
@@ -19,9 +19,8 @@ This will return a list of the clouds that the model thinks it is. Try to get on
 # Credits
 Dataset used to train: https://www.kaggle.com/datasets/mmichelli/cirrus-cumulus-stratus-nimbus-ccsn-database
 Image used for the discord bot's pfp: https://stock.adobe.com/search/video?k=anime+clouds&asset_id=1107084586
+
 # Other notes:
-Clouds are also pretty hard to classify. There's a lot of variation between them (definitely not making excuses for my inability to train a CNN) and I spent a LOT of unlogged time on colab trying to train it but I am pretty happy with my compromise
+Clouds are also pretty hard to classify. There's a lot of variation between them (definitely not making excuses for my inability to train a CNN), and also doesn't help that there are typically multiple clouds in a picture. I spent a LOT of unlogged time on colab trying to train it but I am pretty happy with the final model. It's not perfect, but it's some sense of direction to allow users to try and ask it about the cloud types the model thinks it is and identify the clodus themselves.
 
-It also doesn't help that there are typically multiple clouds in a picture. I will probably add image segmentation using grad cam after finishing other projects, but I would say that the current version is pretty functional.
-
-I also removed cirrostratus clouds from the classifier to help it learn. (so it doesnt identify cirrostratus)
+I also wound up removing cirrostratus clouds from the classifier to help it learn. (As it tended to say everything was cirrostratus)

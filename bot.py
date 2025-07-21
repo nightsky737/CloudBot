@@ -38,7 +38,7 @@ if __name__ == "__main__":
         I'm Nebula, your local cloud-identifying bot!
 
         Right now, I can identify:
-        - ☁️ Cloud types using `!cloudId` + image attachment  
+        - ☁️ Cloud types using !cloudId + image attachment  
 
         I can also
         - Give info on the cloud types with !info [cloudtype] command

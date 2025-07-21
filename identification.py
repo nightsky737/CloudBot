@@ -71,7 +71,7 @@ class IdCog(commands.Cog):
 
     @commands.command()
     async def cloudnames(self, ctx):
-        await ctx.send("Here is a list of valid cloud names and their abbreviations!:\n" + abbreviations_str)
-    
+        await ctx.send("Here is a list of valid cloud names and their abbreviations!:\n" + abbreviations_str, files=discord.File("cloud_altitudes.png"))
+
 async def setup(bot):
     await bot.add_cog(IdCog(bot))
