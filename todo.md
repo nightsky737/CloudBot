@@ -1,8 +1,11 @@
 # IMPORTANT TO
 fix it when ppl crop it weird
-Make a greeting when bot enters server and fix the help command
-add cloud altitudes to the info
-TEST TS BEFORE SHIPPING
+
+# Testing checklist
+- Identify clouds w/ things that are not images or weirdly cropped images
+- !cloudinfo gives images
+- all 11 cloud infos
+- help command
 
 # nice to have
 I wanna do some image segmentation stuf too
