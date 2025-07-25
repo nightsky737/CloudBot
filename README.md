@@ -1,13 +1,18 @@
-# Usage if running bot from code:
-Run pip install -r requirements.txt
-If you want to train the models, run pip intall -r training_requirements.txt
-Create a .env file
-Invite the bot to the server
-Run python main.py
+# Quick demo:
+Join (https://discord.gg/Gaf5Jv3tT8)[https://discord.gg/Gaf5Jv3tT8]
 
-# To add bot to server:
+
+# Usage if running bot from code:
+1. Run pip install -r requirements.txt
+- If you want to train the models, run pip install -r training_requirements.txt
+2. Create a .env file  with
+- bot_key : discord bot key
+3. Run python main.py
+4. Follow discord's instructions to generate the invite link to invite the bot to server
+
+# To add the bot to your server:
 1. Visit this (link)[https://discord.com/oauth2/authorize?client_id=1394383883176247386&permissions=274878024704&integration_type=0&scope=bot] in your browser
-2. Select server you want to add it to
+2. Follow discord's instructions to select server you want to add it to
 3. Enjoy identifying clouds!
 
 # How to use this bot:
@@ -22,6 +27,4 @@ Image used for the discord bot's pfp: https://stock.adobe.com/search/video?k=ani
 Image of clouds and their altitudes: Wikipedia
 
 # Other notes:
-Clouds are also pretty hard to classify, to the point that even I sometimes can't tell them apart. There's a lot of variation between them (definitely not making excuses for my inability to train a CNN), and also doesn't help that there are typically multiple clouds in a picture. I spent a LOT of unlogged time on colab trying to train it but I am pretty happy with the final model. It's not perfect, but it's some sense of direction to allow users to try and ask it about the cloud types the model thinks it is and identify the clouds themselves.
-
-I also wound up removing cirrostratus clouds from the classifier to help it learn. (As it tended to say everything was cirrostratus)
+Clouds are also pretty hard to classify, to the point that even I sometimes can't tell them apart. There's a lot of variation between them (definitely not making excuses for my inability to train a CNN), and also doesn't help that there are typically multiple clouds in a picture. I spent a LOT of unlogged time on colab trying to train it. While the model I am using right now is not perfect, it's some sense of direction to allow users to try and ask it about the cloud types the model thinks it is and identify the clouds themselves.

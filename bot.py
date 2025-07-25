@@ -31,7 +31,6 @@ if __name__ == "__main__":
      
     load_dotenv()
     bot_key = os.getenv('bot_key')
-    my_guild_name = os.getenv('my_server_name')
 
     with open("whatis.json", 'r') as f:
         cloud_info = json.load(f)

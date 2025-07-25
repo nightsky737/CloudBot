@@ -64,7 +64,7 @@ class IdCog(commands.Cog):
             await ctx.send("Please attach an image!")
         except Exception as e:
             print(Exception)
-            await ctx.send("I'm sorry! There was an error processing the image. Please make sure that it is an extension 'jpeg', 'png', 'jpg', or 'webp'")
+            await ctx.send("I'm sorry! There was an error processing the image. Please make sure that it is an extension 'jpeg', 'png', 'jpg', or 'webp', and that it is at least 224 pixels in width and height.")
         
     @commands.command()
     async def info(self, ctx, cloud_name : str, num_to_send=3):
