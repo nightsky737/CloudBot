@@ -77,7 +77,7 @@ class IdCog(commands.Cog):
             cloud_name = abbreviations_dict[cloud_name]
 
         cloud_files = []
-        selected_file_nums = random.sample([i for i in range(info["decent_imgs"][full_to_abbr[cloud_name]][0])], num_to_send)
+        selected_file_nums = random.sample([i for i in range(36)], num_to_send)
         for num in selected_file_nums:
             fp = f"models/data/cloud_data/{full_to_abbr[cloud_name]}/{full_to_abbr[cloud_name]}-N{str(num).rjust(3, '0')}.jpg"
             cloud_files.append(discord.File(fp)) 

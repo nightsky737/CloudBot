@@ -24,7 +24,7 @@ This will return a list of the clouds that the model thinks it is. Try to get on
 # Demo screenshots
 ![alt text](image.png)
 ![alt text](image-3.png)
-At first glance, this one might not look stratus, but the more I think about it, the more I belive this is a side view of a stratus cloud. It was raining on the island before.
+At first glance, this one might not look stratus, but the more I think about it, the more I believe this is a side view of a stratus cloud. It was raining on the island before.
 ![alt text](image-2.png)
 # Credits
 Dataset used to train: https://www.kaggle.com/datasets/mmichelli/cirrus-cumulus-stratus-nimbus-ccsn-database
