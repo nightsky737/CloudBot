@@ -40,7 +40,7 @@ class IdCog(commands.Cog):
             img_bytes = BytesIO(response.content)
             img = Image.open(img_bytes)
                 
-            preds = predict(model, img, should_log=True)
+            preds = predict(model, img, should_log=False)
             #Stuff that should be kind of like hyperparams
             confidence_thres = 0.15
             confident = True
@@ -85,7 +85,7 @@ class IdCog(commands.Cog):
 
     @commands.command()
     async def cloudnames(self, ctx):
-        await ctx.send("Here is a list of valid cloud names and their abbreviations!:\n" + abbreviations_str, files=discord.File("cloud_altitudes.png"))
+        await ctx.send("Here is a list of valid cloud names and their abbreviations!:\n- " + abbreviations_str[1:-1].replace(", ", "\n- "), files=[discord.File("cloud_altitudes.png")])
 
 
 async def setup(bot):
