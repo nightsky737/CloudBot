@@ -1,5 +1,5 @@
 # Quick demo:
-Join (https://discord.gg/Gaf5Jv3tT8)[https://discord.gg/Gaf5Jv3tT8]
+Join this discord server https://discord.gg/Gaf5Jv3tT8
 
 
 # Usage if running bot from code:
