@@ -20,6 +20,7 @@ def load_model(model_fp):
     model = models.resnet152(pretrained=False)
     model.fc = nn.Linear(model.fc.in_features, len(human_labels))
     model.load_state_dict(torch.load(model_fp, map_location=torch.device('cpu')))
+    model.eval()
     return model
 
 model = load_model("models/resnet_pretty_decent.pth") 
