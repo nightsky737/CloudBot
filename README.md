@@ -11,10 +11,6 @@ Join this discord server https://discord.gg/Gaf5Jv3tT8
 3. Run python main.py
 4. Follow discord's instructions to generate the invite link to invite the bot to server
 
-# To add the bot to your server:
-1. Visit this (link)[https://discord.com/oauth2/authorize?client_id=1394383883176247386&permissions=274878024704&integration_type=0&scope=bot] in your browser
-2. Follow discord's instructions to select server you want to add it to
-3. Enjoy identifying clouds!
 
 # How to use this bot:
 Call !help for instructions 
